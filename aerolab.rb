@@ -1,4 +1,4 @@
-class Gophersay < Formula
+class Aerolab < Formula
   desc ""
   homepage "https://github.com/robertglonek/homebrew-tools"
   version "7.6.3"
