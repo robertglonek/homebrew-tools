@@ -37,7 +37,11 @@ Open a new terminal window and run:
 v7.6.3-f46a025
 ```
 
-## Downgrading / Upgrading
+## Upgrading
+
+`brew upgrade robertglonek/tools/aerolab`
+
+## Downgrading / Upgrading to specific versions
 
 Install older version:
 
