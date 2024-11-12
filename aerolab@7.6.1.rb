@@ -1,4 +1,4 @@
-class Aerolab < Formula
+class AerolabAT761 < Formula
   desc ""
   homepage "https://github.com/robertglonek/homebrew-tools"
   version "7.6.1"
