@@ -35,13 +35,13 @@ jobs:
               run: |
                 cp aerolab-template aerolab@${version}.rb
                 sed -i.bak "s/AVERSION/${version}/g" aerolab@${version}.rb
-                nsum=$(shasum -a 256 /tmp/binaries/aerolab-macos-amd64-${version}.zip)
+                nsum=$(shasum -a 256 /tmp/binaries/aerolab-macos-amd64-${version}.zip| awk '{print $1}'))
                 sed -i.bak "s/MACOSAMD/${nsum}/g" aerolab@${version}.rb
-                nsum=$(shasum -a 256 /tmp/binaries/aerolab-macos-arm64-${version}.zip)
+                nsum=$(shasum -a 256 /tmp/binaries/aerolab-macos-arm64-${version}.zip| awk '{print $1}'))
                 sed -i.bak "s/MACOSARM/${nsum}/g" aerolab@${version}.rb
-                nsum=$(shasum -a 256 /tmp/binaries/aerolab-linux-amd64-${version}.zip)
+                nsum=$(shasum -a 256 /tmp/binaries/aerolab-linux-amd64-${version}.zip| awk '{print $1}'))
                 sed -i.bak "s/LINUXAMD/${nsum}/g" aerolab@${version}.rb
-                nsum=$(shasum -a 256 /tmp/binaries/aerolab-linux-arm64-${version}.zip)
+                nsum=$(shasum -a 256 /tmp/binaries/aerolab-linux-arm64-${version}.zip| awk '{print $1}'))
                 sed -i.bak "s/LINUXARM/${nsum}/g" aerolab@${version}.rb
                 if [ "${isLatest}" = "true" ]
                 then
