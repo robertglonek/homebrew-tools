@@ -36,3 +36,38 @@ Open a new terminal window and run:
 % aerolab version
 v7.6.3-f46a025
 ```
+
+## Downgrading / Upgrading
+
+Install older version:
+
+```
+% brew install robertglonek/tools/aerolab@7.6.2
+
+% brew unlink aerolab@7.6.2 && brew link --overwrite aerolab@7.6.2
+
+% aerolab version
+v7.6.2-e548431
+```
+
+Install newer version:
+
+```
+% brew install robertglonek/tools/aerolab@7.6.3
+
+% brew unlink aerolab@7.6.3 && brew link --overwrite aerolab@7.6.3
+
+% aerolab version
+v7.6.3-f46a025
+```
+
+Install latest version:
+
+```
+% brew install robertglonek/tools/aerolab
+
+% brew unlink aerolab && brew link --overwrite aerolab
+
+% aerolab version
+v7.6.3-f46a025
+```
