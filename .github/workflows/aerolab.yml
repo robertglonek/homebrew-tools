@@ -1,8 +1,15 @@
 name: Aerolab - new version
 
 on:
-  repository_dispatch:
-    types: aerolab
+    workflow_dispatch:
+        inputs:
+            isLatest:
+                description: 'Is Latest?'
+                required: false
+                type: boolean
+            version:
+                description: "Version (ex: 7.6.3)"
+                required: true
 
 jobs:
     release:
@@ -12,7 +19,7 @@ jobs:
               uses: actions/checkout@v3
             - name: "Get files from aerolab"
               env:
-                  version: ${{ github.event.client_payload.version }}
+                  version: ${{ inputs.version }}
               run: |
                 mkdir /tmp/binaries
                 pushd /tmp/binaries
@@ -23,8 +30,8 @@ jobs:
                 popd
             - name: "Create rb files"
               env:
-                  version: ${{ github.event.client_payload.version }}
-                  isLatest: ${{ github.event.client_payload.isLatest }}
+                  version: ${{ inputs.version }}
+                  isLatest: ${{ inputs.isLatest }}
               run: |
                 cp aerolab-template aerolab@${version}.rb
                 sed -i.bak "s/AVERSION/${version}/g" aerolab@${version}.rb
@@ -50,8 +57,8 @@ jobs:
             - name: Commit and Push changes
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                version: ${{ github.event.client_payload.version }}
-                isLatest: ${{ github.event.client_payload.isLatest }}
+                version: ${{ inputs.version }}
+                isLatest: ${{ inputs.isLatest }}
               run: |
                 git add aerolab@${version}.rb
                 [ "${isLatest}" = "true" ] && git add aerolab.rb
