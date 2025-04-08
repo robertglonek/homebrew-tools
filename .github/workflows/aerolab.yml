@@ -74,4 +74,4 @@ jobs:
                 git commit -m "Release aerolab ${version}"
                 git push -u origin aerolab
                 gh pr create -f
-                gh pr merge --admin -d $(gh pr list --json number -s open |jq '.[].number') -m
+                gh pr merge --admin -d $(gh pr list --json number,headRefName -s open |jq '.[] | select(.headRefName == "aerolab") | .number') -m
